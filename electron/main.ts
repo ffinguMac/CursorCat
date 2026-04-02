@@ -3,7 +3,7 @@ import path from 'path'
 
 // ── 상수 ─────────────────────────────────────────────────────────────────────
 const POLL_INTERVAL_MS = 16        // ~60fps 폴링
-const CAT_WINDOW_SIZE  = 128       // 고양이 스프라이트 바운딩 박스 (px)
+const CAT_WINDOW_SIZE  = 176       // 고양이 스프라이트 바운딩 박스 (px)
 
 // ── 상태 ─────────────────────────────────────────────────────────────────────
 let overlayWindow: BrowserWindow | null = null
@@ -14,7 +14,7 @@ let trackingTimer: ReturnType<typeof setInterval> | null = null
 function createOverlayWindow(): BrowserWindow {
   const win = new BrowserWindow({
     width:  CAT_WINDOW_SIZE,
-    height: CAT_WINDOW_SIZE,
+    height: CAT_WINDOW_SIZE * 2,
     x: 0,
     y: 0,
 
@@ -42,6 +42,7 @@ function createOverlayWindow(): BrowserWindow {
   // 로드 완료 후 창 표시 (flash 방지)
   win.webContents.on('did-finish-load', () => {
     win.show()
+    win.webContents.openDevTools({ mode: 'detach' })
   })
 
   // 렌더러 로드
@@ -113,11 +114,10 @@ function createTray(win: BrowserWindow): Tray {
   return t
 }
 
-// ── IPC 핸들러 ───────────────────────────────────────────────────────────────
-ipcMain.handle('get-cat-window-size', () => CAT_WINDOW_SIZE)
-
 // ── 앱 라이프사이클 ──────────────────────────────────────────────────────────
 app.whenReady().then(() => {
+  // ── IPC 핸들러 ─────────────────────────────────────────────────────────────
+  ipcMain.handle('get-cat-window-size', () => CAT_WINDOW_SIZE)
   // Linux Wayland 경고
   if (process.platform === 'linux' && process.env['WAYLAND_DISPLAY']) {
     console.warn('CursorCat: Wayland 환경에서는 커서 추적이 제한될 수 있습니다.')

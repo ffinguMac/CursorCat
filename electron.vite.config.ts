@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [externalizeDepsPlugin()],
     build: {
       rollupOptions: {
-        input: { index: 'electron/main.ts' }
+        input: { index: './electron/main.ts' }
       }
     }
   },
@@ -14,15 +14,16 @@ export default defineConfig({
     plugins: [externalizeDepsPlugin()],
     build: {
       rollupOptions: {
-        input: { index: 'electron/preload.ts' }
+        input: { index: './electron/preload.ts' }
       }
     }
   },
   renderer: {
+    root: '.',
     plugins: [react()],
     build: {
       rollupOptions: {
-        input: { index: 'index.html' }
+        input: { index: './index.html' }
       }
     }
   }

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/c/Users/parkj/Documents/GitHub/CursorCat/test-main.js:*)",
+      "Bash(/c/Users/parkj/Documents/GitHub/CursorCat/node_modules/electron/dist/electron.exe test-main.js)",
+      "Bash(/c/Users/parkj/Documents/GitHub/CursorCat/node_modules/electron/dist/electron.exe --no-sandbox test-main.js)",
+      "Bash(/c/Users/parkj/Documents/GitHub/CursorCat/node_modules/electron/dist/electron.exe .)",
+      "Bash(node -e \":*)"
+    ]
+  }
+}

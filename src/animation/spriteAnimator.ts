@@ -8,10 +8,10 @@ export type AnimationConfig = {
 }
 
 export const ANIMATION_CONFIGS: Record<CatState, AnimationConfig> = {
-  idle:  { fps: 4,  frameCount: 2, loop: true },
-  walk:  { fps: 8,  frameCount: 4, loop: true },
-  run:   { fps: 16, frameCount: 4, loop: true },
-  sleep: { fps: 2,  frameCount: 2, loop: true },
+  idle:  { fps: 8,  frameCount: 7, loop: true },
+  walk:  { fps: 10, frameCount: 7, loop: true },
+  run:   { fps: 14, frameCount: 6, loop: true },
+  sleep: { fps: 2,  frameCount: 1, loop: true },
 }
 
 // ── SpriteAnimator ──────────────────────────────────────────────────────────
